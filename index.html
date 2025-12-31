@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happy New Year 🧸</title>
+
+  <!-- Cute font -->
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Baloo 2', cursive;
+      background: #fff6f9;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .page {
+      display: none;
+      padding: 40px 20px;
+    }
+
+    .active {
+      display: block;
+    }
+
+    h1, h2, p {
+      color: #5a3d5c;
+    }
+
+    button {
+      background: #ffb6c1;
+      border: none;
+      padding: 14px 26px;
+      border-radius: 30px;
+      font-size: 16px;
+      margin-top: 25px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ff9aaa;
+    }
+
+    .teddy {
+      font-size: 90px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    input {
+      padding: 12px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      width: 80%;
+      font-size: 16px;
+      margin-top: 15px;
+    }
+
+    .hearts {
+      position: absolute;
+      font-size: 20px;
+      animation: float 6s infinite;
+    }
+
+    @keyframes float {
+      from { bottom: -20px; opacity: 1; }
+      to { bottom: 100%; opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Hidden YouTube music (plays on first tap) -->
+<iframe
+  id="music"
+  width="0"
+  height="0"
+  src=""
+  allow="autoplay"
+></iframe>
+
+<!-- PAGE 1 -->
+<div class="page active">
+  <div class="teddy">🧸🎉</div>
+  <h1>Happy New Year!</h1>
+  <p>I made something cute for you 💖</p>
+  <button onclick="startSurprise()">Start Surprise</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+  <div class="teddy">🐻✨</div>
+  <h2>You make moments special</h2>
+  <p>This year deserves smiles 🌸</p>
+  <button onclick="nextPage()">Next</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page">
+  <div class="teddy">🧸📋</div>
+  <h2>Your New Year Resolutions?</h2>
+  <input placeholder="Type anything here…" />
+  <button onclick="nextPage()">Next</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page">
+  <div class="teddy">🐻💗</div>
+  <h1>I’m always with you</h1>
+  <p>Thank you for being part of my life</p>
+  <p>Happy New Year 💖</p>
+</div>
+
+<script>
+  let pages = document.querySelectorAll(".page");
+  let current = 0;
+
+  function startSurprise() {
+    document.getElementById("music").src =
+      "https://www.youtube.com/embed/OMOGaugKpzs?autoplay=1";
+    nextPage();
+  }
+
+  function nextPage() {
+    pages[current].classList.remove("active");
+    current++;
+    if (current < pages.length) {
+      pages[current].classList.add("active");
+    }
+  }
+
+  // floating hearts
+  setInterval(() => {
+    let heart = document.createElement("div");
+    heart.className = "hearts";
+    heart.innerText = "💖";
+    heart.style.left = Math.random() * 100 + "%";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }, 800);
+</script>
+
+</body>
+</html>
